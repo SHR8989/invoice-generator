@@ -20,9 +20,9 @@ function Header({ onNewInvoice }) {
             : ` There are ${invoices.length} Total Invoices`}
         </p>
       </div>
-      <div className="flex items-center space-x-4">
+      <div className="flex items-center space-x-2 md:space-x-4">
         <Menu as="div" className="relative">
-          <Menu.Button className="flex items-center space-x-2 text-sm md:text-lg text-white hover:text-violet-400 focus:outline-none">
+          <Menu.Button className="flex items-center sapce-x-1 md:space-x-2 text-sm md:text-lg text-white hover:text-violet-400 focus:outline-none">
             <Filter size={20} />
             <span>Filter by Status</span>
           </Menu.Button>
