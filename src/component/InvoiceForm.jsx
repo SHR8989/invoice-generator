@@ -294,76 +294,82 @@ function InvoiceForm({ invoice }) {
             <h3>Item List</h3>
             {formData.items.map((item, index) => (
               <div
-                key={index}
-                className="grid grid-cols-1 sm:grid-cols-12 gap-4 items-start bg-slate-800/50 p-3 rounded-xl"
-              >
-                {/* Item Name */}
-                <div className="sm:col-span-4">
-                  <label className="block text-xs mb-1">Item</label>
-                  <input
-                    type="text"
-                    placeholder="Item Name"
-                    className="bg-slate-900 rounded-lg p-3 w-full"
-                    value={item.name}
-                    onChange={(e) => updateItem(index, "name", e.target.value)}
-                  />
-                </div>
+  key={index}
+  className="grid grid-cols-1 sm:grid-cols-12 gap-4 items-start bg-slate-800/50 p-3 rounded-xl"
+>
+  {/* Item Name */}
+  <div className="sm:col-span-4">
+    <label className="block text-sm md:text-lg mb-1">Item</label>
+    <input
+      type="text"
+      placeholder="Item Name"
+      className="bg-slate-900 rounded-lg p-3 w-full"
+      value={item.name}
+      onChange={(e) => updateItem(index, "name", e.target.value)}
+    />
+  </div>
 
-                {/* Quantity */}
-                <div className="sm:col-span-2">
-                  <label className="block text-xs mb-1">Qty</label>
-                  <input
-                    type="number"
-                    placeholder="0"
-                    className="bg-slate-900 rounded-lg p-3 w-full"
-                    min="1"
-                    value={item.quantity}
-                    onChange={(e) => {
-                      const value = e.target.value;
-                      updateItem(
-                        index,
-                        "quantity",
-                        value === "" ? "" : parseInt(value)
-                      );
-                    }}
-                  />
-                </div>
+  {/* Quantity */}
+  <div className="sm:col-span-2">
+    <label className="block text-sm md:text-lg mb-1">Qty</label>
+    <input
+      type="number"
+      placeholder="0"
+      className="bg-slate-900 rounded-lg p-3 w-full"
+      min="1"
+      value={item.quantity}
+      onChange={(e) => {
+        const value = e.target.value;
+        updateItem(
+          index,
+          "quantity",
+          value === "" ? "" : parseInt(value)
+        );
+      }}
+    />
+  </div>
 
-                {/* Price */}
-                <div className="sm:col-span-3">
-                  <label className="block text-xs mb-1">Price</label>
-                  <input
-                    type="number"
-                    placeholder="0.00"
-                    className="bg-slate-900 rounded-lg p-3 w-full"
-                    min="0"
-                    step="0.01"
-                    value={item.price}
-                    onChange={(e) => {
-                      const value = e.target.value;
-                      updateItem(
-                        index,
-                        "price",
-                        value === "" ? "" : parseFloat(value)
-                      );
-                    }}
-                  />
-                </div>
+  {/* Price */}
+  <div className="sm:col-span-3">
+    <label className="block text-sm md:text-lg mb-1">Price</label>
+    <input
+      type="number"
+      placeholder="0.00"
+      className="bg-slate-900 rounded-lg p-3 w-full"
+      min="0"
+      step="0.01"
+      value={item.price}
+      onChange={(e) => {
+        const value = e.target.value;
+        updateItem(
+          index,
+          "price",
+          value === "" ? "" : parseFloat(value)
+        );
+      }}
+    />
+  </div>
 
-                {/* Total + Delete Row */}
-                <div className="flex justify-between items-center sm:col-span-3">
-                  <p className="text-sm font-semibold">
-                    Total: ₹{item.total.toFixed(2)}
-                  </p>
-                  <button
-                    type="button"
-                    className="text-slate-400 hover:text-red-500"
-                    onClick={() => removeItem(index)}
-                  >
-                    <Trash2 size={20} />
-                  </button>
-                </div>
-              </div>
+  {/* Total + Delete */}
+  
+{/* Total + Delete Row */}
+<div className="sm:col-span-3 flex flex-col md:items-center justify-center sm:justify-end ">
+  <p className="text-sm md:text-center md:text-lg font-semibold whitespace-nowrap mb-2">
+    Total: <br /> <span className="text-white">₹{item.total.toFixed(2)}</span>
+  </p>
+  <button
+    type="button"
+    className="text-slate-400 hover:text-red-500"
+    onClick={() => removeItem(index)}
+  >
+    <Trash2 className="w-4 h-5 md:w-6 md:h-5" />
+  </button>
+</div>
+
+
+
+</div>
+
             ))}
 
             <button
