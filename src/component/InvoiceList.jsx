@@ -53,7 +53,7 @@ const handleInvoiceClick = (invoice) => {
         {/* Right side */}
         <div className="flex items-center justify-between md:justify-end space-x-3 md:space-x-6">
           <span className="text-sm md:text-2xl font-bold">
-            ${invoice.amount?.toFixed(2) || "0.00"}
+            ₹{invoice.amount?.toFixed(2) || "0.00"}
           </span>
 
           <div

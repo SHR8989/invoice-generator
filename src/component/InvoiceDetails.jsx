@@ -168,7 +168,7 @@ function InvoiceDetails({ invoice }) {
       <div className="bg-slate-900 p-4 sm:p-8 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
         <span className="text-white text-lg sm:text-xl">Amount Due</span>
         <span className="text-2xl sm:text-3xl font-bold">
-          ${invoice.amount.toFixed(2)}
+          ₹{invoice.amount.toFixed(2)}
         </span>
       </div>
     </div>

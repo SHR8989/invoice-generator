@@ -195,8 +195,7 @@ function InvoiceForm({ invoice }) {
               onChange={(e) =>
                 setFormData({
                   ...formData,
-                  billTo: {...formData.billTo, streetAddress: e.target.value,}
-                  
+                  billTo: { ...formData.billTo, streetAddress: e.target.value },
                 })
               }
               required
@@ -210,7 +209,10 @@ function InvoiceForm({ invoice }) {
               placeholder=" City"
               value={formData.city}
               onChange={(e) =>
-                setFormData({ ...formData, billTo: {...formData.billTo, city: e.target.value}  })
+                setFormData({
+                  ...formData,
+                  billTo: { ...formData.billTo, city: e.target.value },
+                })
               }
               required
               className="w-full bg-slate-900 rounded-lg p-3"
@@ -220,7 +222,10 @@ function InvoiceForm({ invoice }) {
               placeholder=" Post Code"
               value={formData.postCode}
               onChange={(e) =>
-                setFormData({ ...formData, billTo: {...formData.billTo, postCode: e.target.value} })
+                setFormData({
+                  ...formData,
+                  billTo: { ...formData.billTo, postCode: e.target.value },
+                })
               }
               required
               className="w-full bg-slate-900 rounded-lg p-3"
@@ -230,7 +235,10 @@ function InvoiceForm({ invoice }) {
               placeholder=" Country"
               value={formData.country}
               onChange={(e) =>
-                setFormData({ ...formData, billTo: {...formData.billTo, country: e.target.value} })
+                setFormData({
+                  ...formData,
+                  billTo: { ...formData.billTo, country: e.target.value },
+                })
               }
               required
               className="w-full bg-slate-900 rounded-lg p-3"
@@ -285,45 +293,76 @@ function InvoiceForm({ invoice }) {
           <div className="space-y-4">
             <h3>Item List</h3>
             {formData.items.map((item, index) => (
-              <div className="grid grid-cols-12 gap-4 items-center" key={index}>
-                <input
-                  type="text"
-                  placeholder="Item Name"
-                  className="bg-slate-900 rounded-lg p-3 col-span-5"
-                  value={item.name}
-                  onChange={(e) => updateItem(index, "name", e.target.value)}
-                />
-                <input
-                  type="number"
-                  placeholder="Quantity"
-                  className="bg-slate-900 rounded-lg p-3 col-span-2"
-                  min="1"
-                  value={item.quantity}
-                  onChange={(e) =>
-                    updateItem(index, "quantity", parseInt(e.target.value) || 0)
-                  }
-                />
-                <input
-                  type="number"
-                  placeholder="Price"
-                  className="bg-slate-900 rounded-lg p-3 col-span-2"
-                  min="0"
-                  step="0.01"
-                  value={item.price}
-                  onChange={(e) =>
-                    updateItem(index, "price", parseFloat(e.target.value) || 0)
-                  }
-                />
-                <div className="col-span-2 text-right">
-                  ${item.total.toFixed(2)}
+              <div
+                key={index}
+                className="grid grid-cols-1 sm:grid-cols-12 gap-4 items-start bg-slate-800/50 p-3 rounded-xl"
+              >
+                {/* Item Name */}
+                <div className="sm:col-span-4">
+                  <label className="block text-xs mb-1">Item</label>
+                  <input
+                    type="text"
+                    placeholder="Item Name"
+                    className="bg-slate-900 rounded-lg p-3 w-full"
+                    value={item.name}
+                    onChange={(e) => updateItem(index, "name", e.target.value)}
+                  />
                 </div>
-                <button
-                  type="button"
-                  className="text-slate-400 hover:text-red-500"
-                  onClick={() => removeItem(index)}
-                >
-                  <Trash2 size={20} />
-                </button>
+
+                {/* Quantity */}
+                <div className="sm:col-span-2">
+                  <label className="block text-xs mb-1">Qty</label>
+                  <input
+                    type="number"
+                    placeholder="0"
+                    className="bg-slate-900 rounded-lg p-3 w-full"
+                    min="1"
+                    value={item.quantity}
+                    onChange={(e) => {
+                      const value = e.target.value;
+                      updateItem(
+                        index,
+                        "quantity",
+                        value === "" ? "" : parseInt(value)
+                      );
+                    }}
+                  />
+                </div>
+
+                {/* Price */}
+                <div className="sm:col-span-3">
+                  <label className="block text-xs mb-1">Price</label>
+                  <input
+                    type="number"
+                    placeholder="0.00"
+                    className="bg-slate-900 rounded-lg p-3 w-full"
+                    min="0"
+                    step="0.01"
+                    value={item.price}
+                    onChange={(e) => {
+                      const value = e.target.value;
+                      updateItem(
+                        index,
+                        "price",
+                        value === "" ? "" : parseFloat(value)
+                      );
+                    }}
+                  />
+                </div>
+
+                {/* Total + Delete Row */}
+                <div className="flex justify-between items-center sm:col-span-3">
+                  <p className="text-sm font-semibold">
+                    Total: ₹{item.total.toFixed(2)}
+                  </p>
+                  <button
+                    type="button"
+                    className="text-slate-400 hover:text-red-500"
+                    onClick={() => removeItem(index)}
+                  >
+                    <Trash2 size={20} />
+                  </button>
+                </div>
               </div>
             ))}
 
