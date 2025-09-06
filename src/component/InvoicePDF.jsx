@@ -229,10 +229,10 @@ export const InvoicePDF = ({ invoice }) => {
                 {item.quantity}
               </Text>
               <Text style={[styles.tableCell, styles.col3]}>
-                ${item.price.toFixed(2)}
+                {item.price.toFixed(2)}
               </Text>
               <Text style={[styles.tableCell, styles.col4]}>
-                ${item.total.toFixed(2)}
+                {item.total.toFixed(2)}
               </Text>
             </View>
           ))}
@@ -243,13 +243,13 @@ export const InvoicePDF = ({ invoice }) => {
         <View style={styles.totalSection}>
           <View style={styles.totalRow}>
             <Text style={styles.totalLabel}>Amount Due</Text>
-            <Text style={styles.totalAmount}>${invoice.amount.toFixed(2)}</Text>
+            <Text style={styles.totalAmount}>INR {invoice.amount.toFixed(2)}</Text>
           </View>
         </View>
 
         {/* Footer */}
         <Text style={styles.footer}>
-          This is a computer-generated document. No signature is required.
+          This is a computer-generated document. No signature is required. Designed by <span className="font-bold">Shreyansh.</span>
         </Text>
       </Page>
     </Document>
